@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="css/signup.css">
+
+<h1>Sign up Form</h1>
+
+  <form name='signupForm' novalidate>
+    <div id="info" ng-hide="signupCtrl.completed">
+
+      First Name :
+      <input type="text" name="firstname" placeholder="First Name"
+        ng-model="signupCtrl.user.firstname"
+        required>
+        <span
+          ng-if="signupForm.firstname.$error.required && signupForm.firstname.$touched">
+          Please enter your First Name
+        </span>
+        <br>
+
+      Last Name :
+      <input type="text" name="lastname" placeholder="Last Name"
+        ng-model="signupCtrl.user.lastname"
+        required>
+        <span
+          ng-if="signupForm.lastname.$error.required && signupForm.lastname.$touched">
+          Please enter your Last Name
+        </span>
+        <br>
+
+      Email Address :
+      <input type="email" name="email" placeholder="Email"
+        ng-model="signupCtrl.user.email"
+        required>
+        <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+          Must be a valid email address: handle@domain format
+        </span>
+        <br>
+
+      Phone Number :
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signupCtrl.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </span>
+        <br>
+
+      Favourite Item's Menu Number :
+      <input type="text" name="favitem" placeholder="Favourite item"
+        ng-model="signupCtrl.user.favitem"
+        required>
+        <span
+          ng-if="signupForm.favitem.$error.required && signupForm.favitem.$touched">
+          Please enter your Favourite Item
+        </span>
+        <br>
+
+      <button
+        ng-disabled="signupForm.$invalid"
+        ng-click="signupCtrl.submit()">Submit</button>
+    </div>
+
+    <div id="info" ng-if="signupCtrl.completed">
+      Your information has been saved
+    </div>
+    <div id="info" ng-if="signupCtrl.error">
+      No such menu number exists
+    </div>
+
+    </form>

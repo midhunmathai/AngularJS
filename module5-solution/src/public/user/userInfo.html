@@ -1,0 +1,21 @@
+<div ng-if="userInfo.user">
+  <h1>Registered Information</h1>
+  <br>
+  First Name : {{userInfo.user.firstname}}
+  <br>
+  Last Name : {{userInfo.user.lastname}}
+  <br>
+  Email : {{userInfo.user.email}}
+  <br>
+  Phone : {{userInfo.user.phone}}
+  <br>
+  Favourite Item : {{userInfo.favItem.name}} ({{userInfo.favItem.short_name}})
+  <br>
+  {{userInfo.favItem.description}}
+  <br>
+  <img class="img-responsive" width="250" height="150" ng-src="https://midhunmathai-course5.herokuapp.com/images/{{userInfo.favItem.short_name}}.jpg" alt="{{userInfo.favItem.name}}">
+</div>
+
+<div ng-hide="userInfo.user">
+  Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+</div>
