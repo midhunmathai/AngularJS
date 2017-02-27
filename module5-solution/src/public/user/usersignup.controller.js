@@ -4,26 +4,27 @@
 angular.module('public')
 .controller('SignupController', SignupController);
 
-SignupController.$inject = ['UserSignUpService'];
+SignupController.$inject = ['UserSignUpService', 'user', 'favItem'];
+function SignupController(UserSignUpService, user, favItem) {
+  var $ctrl = this;
+  $ctrl.user = user;
+  $ctrl.favItem = favItem;
 
-function SignupController(UserSignUpService) {
-  var signupCtrl = this;
-  var user = this.user;
-
-  signupCtrl.submit = function () {
+  $ctrl.submit = function () {
     //console.log("Invoked submit, with information - ", this.user);
-    signupCtrl.completed = false;
-    signupCtrl.error = false;
+    $ctrl.completed = false;
+    $ctrl.error = false;
     // Do the validation and save
     var promise = UserSignUpService.getMenuItem(this.user);
 
     promise.then(function (response) {
-      signupCtrl.completed = true;
-    //  user = this.user;
+      $ctrl.completed = true;
+      //console.log("response - " , response);
+      $ctrl.favItem = response;
     })
     .catch(function (error) {
-      signupCtrl.completed = false;
-      signupCtrl.error = true;
+      $ctrl.completed = false;
+      $ctrl.error = true;
       user = "";
     })
 

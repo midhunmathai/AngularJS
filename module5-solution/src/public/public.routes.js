@@ -46,12 +46,20 @@ function routeConfig ($stateProvider) {
       templateUrl: 'src/public/user/signup.html',
       controller: 'SignupController',
       controllerAs: 'signupCtrl',
+      resolve: {
+        user: ['UserSignUpService', function (UserSignUpService) {
+          return UserSignUpService.getUser();
+        }],
+        favItem: ['UserSignUpService', function (UserSignUpService) {
+          return UserSignUpService.getFavItem();
+        }]
+      }
     })
     .state('public.userInfo', {
       url: '/userInfo',
       templateUrl: 'src/public/user/userInfo.html',
-      controller: 'UserInfoController',
-      controllerAs: 'userInfo',
+      controller: 'SignupController',
+      controllerAs: 'signupCtrl',
       resolve: {
         user: ['UserSignUpService', function (UserSignUpService) {
           return UserSignUpService.getUser();
